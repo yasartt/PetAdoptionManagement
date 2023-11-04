@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Cv++sEFUG8YHNLsSBx3VdwBAPZCQc+XhIPW6br2S+bg=",
+  "Source": "pet-adoption-service",
+  "BasePath": "_content/pet-adoption-service",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
