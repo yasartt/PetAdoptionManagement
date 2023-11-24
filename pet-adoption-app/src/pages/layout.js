@@ -18,6 +18,9 @@ function Layout() {
         if(currentLocation.pathname === "/list") {
             setTitle("List")
         }
+        if(currentLocation.pathname === "/details") {
+            setTitle("Details")
+        }
         if(currentLocation.pathname === "/profile") {
             setTitle("Profile")
         }
@@ -64,10 +67,6 @@ function Layout() {
             {title !== "List" &&(<div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
                 <Link to="/list">List</Link>
             </div>)}
-    
-            <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
-                <Link to="/details">Details</Link>
-            </div>
 
             {title === "Profile" && (<div className="p-3 bg-bunny-300 text-green-100 mx-2 rounded-xl flex justify-center">
                 <Link to="/profile">Profile</Link>
@@ -78,17 +77,12 @@ function Layout() {
             <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
                 <Link to="/adminMain">AdminM</Link>
             </div>
-            <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
-                <Link to="/adminDetails">AdminD</Link>
-            </div>
+        
             <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
                 <Link to="/listShelter">List Shelter</Link>
             </div>
             <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
                 <Link to="/profileShelter">Profile Shelter</Link>
-            </div>
-            <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
-                <Link to="/detailsShelter">Details Shelter</Link>
             </div>
             <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
                 <Link to="/addPet">Add Pet</Link>
