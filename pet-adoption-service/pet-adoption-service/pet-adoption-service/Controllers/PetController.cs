@@ -1,18 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using pet_adoption_service.Models;
 using pet_adoption_service.Services; // Add the namespace for your service
 
 namespace pet_adoption_service.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class PetController : ControllerBase
     {
-        private readonly IPetService _petService; // Add a service interface
+        private readonly IPetService _petService;
+        private readonly PetAdoptionDbContext _dbContext;
 
-        public PetController(IPetService petService)
+        public PetController(IPetService petService, PetAdoptionDbContext dbContext)
         {
             _petService = petService;
+            _dbContext = dbContext;
         }
 
         [HttpGet]

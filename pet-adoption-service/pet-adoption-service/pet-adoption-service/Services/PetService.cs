@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using pet_adoption_service.Models;
 
 namespace pet_adoption_service.Services
 {
     public interface IPetService
     {
-        IEnumerable<Pet> GetAllPets();
+        Task<IEnumerable<Pet>> GetAllPets();
         void AddPet(Pet pet);
     }
 
@@ -19,15 +20,15 @@ namespace pet_adoption_service.Services
             _dbContext = dbContext;
         }
 
-        public IEnumerable<Pet> GetAllPets()
+        public async Task<IEnumerable<Pet>> GetAllPets()
         {
-            return _dbContext.Pets.ToList();
+            return await _dbContext.Pets.ToListAsync();
         }
 
         public void AddPet(Pet pet)
         {
             _dbContext.Pets.Add(pet);
-            _dbContext.SaveChanges();
+            _dbContext.SaveChangesAsync();
         }
     }
 }

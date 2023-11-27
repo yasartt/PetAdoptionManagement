@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Add the service registration in your Program.cs
 builder.Services.AddScoped<IPetService, PetService>();
+builder.Services.AddScoped<UserService>();
 
 
 builder.Services.AddControllers();
