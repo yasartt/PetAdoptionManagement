@@ -14,5 +14,9 @@ namespace pet_adoption_service.Models
         {
         }
         public DbSet<Pet> Pets { get; set; }
+        public DbSet<Shelter> Shelters { get; set; }
+        public DbSet<PetAdopter> PetAdopters { get; set; }
+        public DbSet<Veterinarian> Veterinarians { get; set; }
     }
 }
+

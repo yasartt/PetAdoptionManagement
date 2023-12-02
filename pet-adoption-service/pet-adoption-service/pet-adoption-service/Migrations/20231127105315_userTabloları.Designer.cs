@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using pet_adoption_service.Models;
 
@@ -10,9 +11,10 @@ using pet_adoption_service.Models;
 namespace pet_adoption_service.Migrations
 {
     [DbContext(typeof(PetAdoptionDbContext))]
-    partial class PetAdoptionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231127105315_userTabloları")]
+    partial class userTabloları
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
