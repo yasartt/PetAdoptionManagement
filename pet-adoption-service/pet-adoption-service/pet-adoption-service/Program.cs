@@ -5,6 +5,17 @@ using pet_adoption_service.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policyBuilder =>
+    {
+        policyBuilder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
+
 // Add services to the container.
 // Add the service registration in your Program.cs
 builder.Services.AddScoped<IPetService, PetService>();
@@ -24,6 +35,7 @@ builder.Services.AddDbContext<PetAdoptionDbContext>(options =>
     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
+app.UseCors();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -31,6 +43,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+app.UseHttpsRedirection();
 
 app.UseHttpsRedirection();
 

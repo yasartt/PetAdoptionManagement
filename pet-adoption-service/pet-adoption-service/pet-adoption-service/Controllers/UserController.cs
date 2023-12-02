@@ -25,8 +25,7 @@ namespace pet_adoption_service.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<Veterinarian>> RegisterVet(Veterinarian newVet)
         {
-            var userExists = await _dbContext.Veterinarians.SingleOrDefaultAsync(q => q.Username == newVet.Username);
-            if (userExists != null)
+            if (await _dbContext.Veterinarians.AnyAsync(q => q.Username == newVet.Username))
             {
                 return Conflict("Kullanıcı adı kullanımda");
             }
@@ -35,6 +34,42 @@ namespace pet_adoption_service.Controllers
             if (newVetResult != null)
             {
                 return Ok(newVetResult);
+            }
+            return BadRequest();
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(PetAdopter), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
+        public async Task<ActionResult<PetAdopter>> RegisterAdopter(PetAdopter newAdopter)
+        {
+            if (await _dbContext.PetAdopters.AnyAsync(q => q.Username == newAdopter.Username))
+            {
+                return Conflict("Kullanıcı adı kullanımda");
+            }
+
+            var newAdopterResult = await _userService.AddAdopterAsync(newAdopter);
+            if (newAdopterResult != null)
+            {
+                return Ok(newAdopterResult);
+            }
+            return BadRequest();
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(Shelter), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
+        public async Task<ActionResult<Shelter>> RegisterShelter(Shelter shelter)
+        {
+            if (await _dbContext.Shelters.AnyAsync(q => q.Username == shelter.Username))
+            {
+                return Conflict("Kullanıcı adı kullanımda");
+            }
+
+            var newAdopterResult = await _userService.AddShelterAsync(shelter);
+            if (newAdopterResult != null)
+            {
+                return Ok(newAdopterResult);
             }
             return BadRequest();
         }

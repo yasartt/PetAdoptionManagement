@@ -37,6 +37,45 @@ namespace pet_adoption_service.Services
             return newVeterinarian;
         }
 
+        [ProducesResponseType(typeof(NoContentResult), (int)HttpStatusCode.NoContent)]
+        public async Task<PetAdopter> AddAdopterAsync(PetAdopter adopter)
+        {
+
+
+            var newAdopter = new PetAdopter
+            {
+                Age = adopter.Age,
+                Name = adopter.Name,
+                Address = adopter.Address,
+                Username = adopter.Username,
+                Password = adopter.Password,
+            };
+
+            await _dbContext.PetAdopters.AddAsync(newAdopter);
+            await _dbContext.SaveChangesAsync();
+
+            return newAdopter;
+        }
+
+        [ProducesResponseType(typeof(NoContentResult), (int)HttpStatusCode.NoContent)]
+        public async Task<Shelter> AddShelterAsync(Shelter shelter)
+        {
+
+
+            var newShelter = new Shelter
+            {
+                Name = shelter.Name,
+                Address = shelter.Address,
+                Username = shelter.Username,
+                Password = shelter.Password,
+            };
+
+            await _dbContext.Shelters.AddAsync(newShelter);
+            await _dbContext.SaveChangesAsync();
+
+            return newShelter;
+        }
+
 
     }
 }
