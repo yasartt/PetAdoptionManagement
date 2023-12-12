@@ -15,6 +15,24 @@ function Layout() {
         if(currentLocation.pathname === "/") {
             setTitle("Home")
         }
+        if(currentLocation.pathname === "/list") {
+            setTitle("List")
+        }
+        if(currentLocation.pathname === "/details") {
+            setTitle("Details")
+        }
+        if(currentLocation.pathname === "/profile") {
+            setTitle("Profile")
+        }
+        if(currentLocation.pathname === "/adminMain") {
+            setTitle("Admin")
+        }
+        if(currentLocation.pathname === "/adminDetails") {
+            setTitle("AdminDetails")
+        }
+        if(currentLocation.pathname === "/listShelter") {
+            setTitle("List Shelter")
+        }
         if(currentLocation.pathname === "/auth") {
             setAuth(true)
         }
@@ -41,6 +59,33 @@ function Layout() {
             </div>
             <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
                 <Link to="/auth">Auth</Link>
+            </div>
+
+            {title === "List" && (<div className="p-3 bg-bunny-300 text-green-100 mx-2 rounded-xl flex justify-center">
+                <Link to="/list">List</Link>
+            </div>)}
+            {title !== "List" &&(<div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
+                <Link to="/list">List</Link>
+            </div>)}
+
+            {title === "Profile" && (<div className="p-3 bg-bunny-300 text-green-100 mx-2 rounded-xl flex justify-center">
+                <Link to="/profile">Profile</Link>
+            </div>)}
+            {title !== "Profile" && (<div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
+                <Link to="/profile">Profile</Link>
+            </div>)}
+            <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
+                <Link to="/adminMain">AdminM</Link>
+            </div>
+        
+            <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
+                <Link to="/listShelter">List Shelter</Link>
+            </div>
+            <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
+                <Link to="/profileShelter">Profile Shelter</Link>
+            </div>
+            <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
+                <Link to="/addPet">Add Pet</Link>
             </div>
         </div>
         )}

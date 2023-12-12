@@ -1,36 +1,11 @@
 import { useState,useEffect } from 'react';
 import logo from './../rabbit.png';
-import Register from './Register';
 
 function Auth() {
-    const [formValues, setFormValues] = useState({
-        username: '',
-        password: ''
-      });
-      const handleInputChange = (e) => {
-        //const { name, value } = e.target;
-        setFormValues({
-          ...formValues,
-          [e.target.name]: e.target.value
-        });
-      };
-    
-      // Handle form submit
-      const handleSubmit = (e) => {
-        e.preventDefault(); // Prevent default form submission behavior
-    
-        // TODO: Implement what should happen on form submit
-        console.log('Form submitted:', formValues);
-    
-        // You might want to call an API to submit these values
-        // or dispatch an action if using Redux, for example.
-      };
-
-
     const [isLogin,setLogin] = useState(true);
     const [acc,setAcc] = useState(0)
 
-    const addrtype = ["Adopter", "Shelter", "Veterinarian"]
+    const [addrtype, setAddrtype] = useState(["Adopter", "Shelter"])
     const Add = addrtype.map(Add => Add
     )
     const handleAddrTypeChange = (e) => setAcc(e.target.value)
@@ -59,61 +34,34 @@ function Auth() {
                 className="border-2 rounded-lg border-slate-800 p-1" >
                 {
                     Add.map((address, key) => <option value={key}>{address}</option>)
-                    
                 }
             </select >)}
             
             {isLogin && (<p>Sign in to your account</p>)}
             {!isLogin && (<p>Sign up for {addrtype[acc]} account</p>)}
-            
-            
-            {isLogin && (
             <div className="flex flex-col justify-center space-y-3">
-                <form className="flex flex-col items-center" onSubmit={handleSubmit}>
+                <form className="flex flex-col items-center">
                     <label className="self-start text-sm">Username:</label>
-                    <input 
-                        className="rounded-lg bg-bunny-100 p-1"  
-                        type="text"
-                        name="username" // Added name attribute
-                        value={formValues.username} 
-                        onChange={handleInputChange}
-                    /> 
+                    <input  className="rounded-lg bg-bunny-100 p-1"  type="text"/> 
+                </form>
+                <form className="flex flex-col items-center">
                     <label className="self-start text-sm">Password:</label>
-                    <input  
-                        className="rounded-lg bg-bunny-100 p-1" 
-                        type="password"
-                        name="password" // Changed to password and added name attribute
-                        value={formValues.password} // Changed to password
-                        onChange={handleInputChange}
-                    /> 
-                    {isLogin ? (
-                        <button
-                            className="p-3 bg-bunny-400 rounded-2xl text-white cursor-pointer"
-                            type="submit" // Added type submit for proper form submission
-                        >
-                            Login
-                        </button>
-                    ) : (
-                        <button
-                            className="p-3 bg-bunny-400 rounded-2xl text-white cursor-pointer"
-                            type="submit" // Added type submit for proper form submission
-                        >
-                            Register
-                        </button>
-                    )}
+                    <input  className="rounded-lg bg-bunny-100 p-1" type="password"/> 
                 </form>
 
             </div>
+            {isLogin && (
+            <div className="p-3 bg-bunny-400 rounded-2xl text-white">Login</div>
             )}
-            {!isLogin &&(
-            <Register accIndex={acc}>
+            {!isLogin && (
+            <div className="p-3 bg-bunny-400 rounded-2xl text-white">Register</div>
+            )}
+            
 
-            </Register>
-        )}
+
         </div>
-    </div>                    
-    )
-
+    </div>
+  );
 }
 
 export default Auth;
