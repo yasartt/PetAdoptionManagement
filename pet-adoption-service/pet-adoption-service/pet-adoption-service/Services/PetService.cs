@@ -11,7 +11,7 @@ namespace pet_adoption_service.Services
         void AddPet(Pet pet);
     }
 
-    public class PetService : IPetService
+    public class PetService
     {
         private readonly PetAdoptionDbContext _dbContext;
 
@@ -20,7 +20,7 @@ namespace pet_adoption_service.Services
             _dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<Pet>> GetAllPets()
+        public async Task<List<Pet>> GetAllPets()
         {
             return await _dbContext.Pets.ToListAsync();
         }
