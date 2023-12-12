@@ -20,6 +20,7 @@ namespace pet_adoption_service.Services
         public async Task<List<Pet>> GetPetsByShelterAsync(int shelterId)
         {
             var petList = await _dbContext.Pets.Where(q => q.ShelterId == shelterId).ToListAsync();
+            
 
             return petList;
         }
