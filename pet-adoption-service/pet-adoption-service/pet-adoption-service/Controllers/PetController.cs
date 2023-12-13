@@ -19,9 +19,9 @@ namespace pet_adoption_service.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllPets()
+        public async Task<ActionResult<List<Pet>>> GetAllPets()
         {
-            var pets = _petService.GetAllPets();
+            var pets = await _petService.GetAllPets();
             return Ok(pets);
         }
 
