@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using pet_adoption_service.Models;
-using pet_adoption_service.Services; // Add the namespace for your service
+using pet_adoption_service.Services;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace pet_adoption_service.Controllers
 {
@@ -9,10 +10,10 @@ namespace pet_adoption_service.Controllers
     [ApiController]
     public class PetController : ControllerBase
     {
-        private readonly IPetService _petService;
+        private readonly PetService _petService;
         private readonly PetAdoptionDbContext _dbContext;
 
-        public PetController(IPetService petService, PetAdoptionDbContext dbContext)
+        public PetController(PetService petService, PetAdoptionDbContext dbContext)
         {
             _petService = petService;
             _dbContext = dbContext;
@@ -26,14 +27,14 @@ namespace pet_adoption_service.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddPet([FromBody] Pet pet)
+        public async Task<IActionResult> AddPet([FromBody] Pet pet)
         {
             if (pet == null)
             {
                 return BadRequest("Pet data is null");
             }
 
-            _petService.AddPet(pet);
+            await _petService.AddPet(pet);
 
             return CreatedAtAction(nameof(GetAllPets), new { id = pet.PetId }, pet);
         }
