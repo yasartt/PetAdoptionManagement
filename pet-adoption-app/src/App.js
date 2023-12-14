@@ -14,6 +14,7 @@ import ProfileS from './pages/profileShelter';
 import DetailsS from './pages/detailsShelter';
 import './index.css';
 import AddPet from './pages/addPet';
+import SelectAppointment from './components/SelectAppointment';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
                   <Route path='/profileShelter' element={<ProfileS />} />
                   <Route path='/detailsShelter' element={<DetailsS />} />
                   <Route path='/addPet' element={<AddPet />} />
+                  <Route path='/selectAppointment' element={<SelectAppointment/>} />
                 </Route>
             </Routes>
         </Router>
