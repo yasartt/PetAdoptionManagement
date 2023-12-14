@@ -26,6 +26,10 @@ namespace pet_adoption_service.Models
         [Column("address")]
         public string Address { get; set; }
 
+        public string? BusyHours { get; set; }
+
+        public string? RestrictedHours { get; set; }
+
     }
 }
 

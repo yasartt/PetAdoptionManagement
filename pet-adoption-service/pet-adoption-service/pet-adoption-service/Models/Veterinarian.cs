@@ -27,5 +27,7 @@ namespace pet_adoption_service.Models
 
         [Column("specialization")]
         public string Specialization { get; set; }
+
+        public string? RestrictedHours { get; set; }
     }
 }
