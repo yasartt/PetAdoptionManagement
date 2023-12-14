@@ -8,7 +8,7 @@ namespace pet_adoption_service.Services
     public interface IPetService
     {
         Task<IEnumerable<Pet>> GetAllPets();
-        void AddPet(Pet pet);
+        Task AddPet(Pet pet);
     }
 
     public class PetService
@@ -25,10 +25,10 @@ namespace pet_adoption_service.Services
             return await _dbContext.Pets.ToListAsync();
         }
 
-        public void AddPet(Pet pet)
+        public async Task AddPet(Pet pet)
         {
             _dbContext.Pets.Add(pet);
-            _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

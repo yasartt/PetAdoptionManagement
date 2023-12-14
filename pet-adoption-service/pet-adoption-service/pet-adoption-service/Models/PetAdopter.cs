@@ -13,11 +13,14 @@ namespace pet_adoption_service.Models
         [Column("userId")]
         public int UserId { get; set; }
 
+        [Required]
         [Column("username")]
         public string Username { get; set; }
 
+        [Required]
         [Column("password")]
         public string Password { get; set; }
+
         [Column("name")]
         public string Name { get; set; }
 
