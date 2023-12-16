@@ -93,14 +93,29 @@ const SelectAppointment = ({ props }) => {
   const isItAvailable = (gunIndex, saatIndex) => {
 
     const today = new Date();
-    const selectedDate = new Date();
+    const selectedDate = new Date(seciliHafta.baslangicTarihi)
 
     selectedDate.setDate(seciliHafta.baslangicTarihi.getDate() + gunIndex);
+
+    console.log('Selected date:', selectedDate);
+    console.log('Baslangic Tarihi:', seciliHafta.baslangicTarihi);
 
     //selectedDate.setDate(today.getDate() + (gunIndex - today.getDay()) + seciliHafta.haftaNumarasi * 7);
     const selectedHour = (Math.floor(saatIndex/2)) + 9; // Assuming hours start from 9:00 AM
 
-    // Compare the selected datetime with the current datetime
+    
+    if(selectedDate.getTime() > today.getTime()) {
+      return true;
+    }
+    else{
+      
+      
+
+      return false;
+    }
+    
+
+    /*/ Compare the selected datetime with the current datetime
     if (
       selectedDate < today ||
       (selectedDate.getDate() === today.getDate() && selectedHour <= today.getHours())
@@ -108,18 +123,17 @@ const SelectAppointment = ({ props }) => {
       return false; // Time is in the future or the current hour
     } else {
       return true; // Time has passed
-    }
+    }*/
 
   };
 
   const handleSecim = (gunIndex, saatIndex) => {
-    //api call to send application request to the api, pet id, veterinarian id, selected date and time are needed
+    //api call to send application request to the api. Pet id, veterinarian id, selected date and time are needed
     const gonderilecekTarih = new Date(seciliHafta.baslangicTarihi.getTime() + gunIndex * 24 * 60 * 60 * 1000);
     
     gonderilecekTarih.setHours(saatIndex + 9);
     //console.log('Selected date:', seciliHafta.baslangicTarihi + gunIndex);
     console.log('Gonderilecek Tarih:', gonderilecekTarih);
-
 
 
     setSeciliGun(gunIndex);
