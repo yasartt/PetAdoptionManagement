@@ -17,5 +17,8 @@ namespace pet_adoption_service.Models
         [Required]
         public bool isHealthy { get; set; }
 
+        [Required]
+        public DateTime UpdateTime { get; set; }
+
     }
 }
