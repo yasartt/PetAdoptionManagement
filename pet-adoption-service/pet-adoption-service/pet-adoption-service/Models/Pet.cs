@@ -30,6 +30,8 @@ namespace pet_adoption_service.Models
         [Column("shelter_id")]
         public int? ShelterId { get; set; }
 
+        public int IsAvailable { get; set; }
+
         // If there is a navigation property to the Shelter entity, it should be included here.
         // [ForeignKey("ShelterId")]
         // public virtual Shelter Shelter { get; set; }

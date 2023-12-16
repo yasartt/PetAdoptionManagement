@@ -26,6 +26,5 @@ namespace pet_adoption_service.Controllers
         {
             return await _veterinarianService.AddAppointmentAsync(vetId, petId, date);
         }
-
     }
 }

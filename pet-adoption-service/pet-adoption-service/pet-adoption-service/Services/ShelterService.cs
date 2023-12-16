@@ -25,5 +25,52 @@ namespace pet_adoption_service.Services
             return petList;
         }
 
+        public async Task<ShelterBusyHoursView> GetShelterBusyHoursAsync(int shelterId)
+        {
+            try
+            {
+                var theShelter = await _dbContext.Shelters.SingleOrDefaultAsync(q => q.UserId == shelterId);
+
+                var appointmentList = await _dbContext.ShelterAppointments.Where(q => q.ShelterId == shelterId).ToListAsync();
+
+                return new ShelterBusyHoursView()
+                {
+                    Appointments = appointmentList,
+                    RestrictedHours = theShelter.RestrictedHours,
+                };
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+        public async Task<Boolean> AddAppointmentAsync(int vetId, int petId, DateTime date)
+        {
+            var theVet = await _dbContext.Veterinarians.SingleOrDefaultAsync(q => q.UserId == vetId);
+
+            var thePet = await _dbContext.Pets.SingleOrDefaultAsync(q => q.PetId == petId);
+
+            if (theVet == null || thePet == null)
+            {
+                return false;
+            }
+
+            // check if that hour is available
+
+            await _dbContext.VetAppointments.AddAsync(new VetAppointment()
+            {
+                VetId = vetId,
+                PetId = petId,
+                AppointmentDate = date,
+            });
+
+            await _dbContext.SaveChangesAsync();
+
+            return true;
+        }
+
     }
 }

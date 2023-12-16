@@ -25,5 +25,17 @@ namespace pet_adoption_service.Controllers
 
             return await shelterService.GetPetsByShelterAsync(shelterId);
         }
+
+        [HttpGet("vetId")]
+        public async Task<ActionResult<VetBusyHoursView>> GetShelterBusyHours(int shelterId)
+        {
+            return await shelterService.GetShelterBusyHoursAsync(shelterId);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Boolean>> AddAppointment(int vetId, int petAdopterId, DateTime date)
+        {
+            return await shelterService.AddAppointmentAsync(vetId, petAdopterId, date);
+        }
     }
 }

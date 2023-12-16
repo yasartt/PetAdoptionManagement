@@ -25,10 +25,20 @@ namespace pet_adoption_service.Services
             return await _dbContext.Pets.ToListAsync();
         }
 
-        public async Task AddPet(Pet pet)
+        public async Task<bool> AddPet(Pet pet)
         {
-            _dbContext.Pets.Add(pet);
-            await _dbContext.SaveChangesAsync();
+            try
+            {
+                await _dbContext.Pets.AddAsync(pet);
+                await _dbContext.SaveChangesAsync();
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            
         }
     }
 }
