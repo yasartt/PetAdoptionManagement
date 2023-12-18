@@ -100,6 +100,11 @@ function Auth() {
                 </form>
 
             </div>
+            {isLogin && (
+            <div className="p-3 bg-bunny-400 rounded-2xl text-white">Login</div>
+            )}
+            {!isLogin && (
+            <div className="p-3 bg-bunny-400 rounded-2xl text-white">Register</div>
             )}
             {!isLogin &&(
             <Register accIndex={acc}>
@@ -107,7 +112,7 @@ function Auth() {
             </Register>
         )}
         </div>
-    </div>                    
+    </div>
     )
 
 }

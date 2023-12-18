@@ -1,9 +1,26 @@
 //import './App.css';
 import {Link } from "react-router-dom";
 import davsan from './../davsan.jpeg';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import { useState } from "react";
 
-
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 function Profile() {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <div className="flex flex-col items-center space-y-3 p-3">
 
@@ -24,8 +41,30 @@ function Profile() {
             <div className="flex flex-col w-1/4 space-y-1 justify-evenly p-1">
                 <p className="bg-bunny-400 rounded-lg p-1 text-white">Status:</p>
                 <p className="bg-bunny-500 rounded-lg p-1 text-white">Schedule</p>
+                <button onClick={handleOpen} className="bg-bunny-500 rounded-lg p-1 text-white">Vet App.</button>
             </div>
         </div>
+        <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2" className="flex justify-center">
+              List of Vets
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }} className="flex flex-col items-center space-y-4">
+            <Link to="/detailsVet" className="flex flex-row bg-bunny-100 rounded-lg border-2 border-bunny-300 w-1/2 justify-between">
+                <div className="flex flex-col p-2 w-3/4text-left">
+                    <p>Vet Name: </p>
+                    <p>Location: </p>
+                </div>
+                <div className="flex bg-bunny-400 rounded-r-sm w-1/4 items-center justify-center text-white">CU</div>
+            </Link> 
+            </Typography>
+          </Box>
+        </Modal>
 
         <p className="">Your resume:</p>
         <p>Question</p>
