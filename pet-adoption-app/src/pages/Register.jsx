@@ -68,9 +68,7 @@ function Register({accIndex}) {
             ...formData2,
             [e.target.name]: e.target.value
         });
-        axios.post('https://localhost:7073/RegisterVet', formData2).then(response => {
 
-        });
 
     };
 
@@ -78,6 +76,9 @@ function Register({accIndex}) {
         e.preventDefault();
         console.log('Form Data:', formData2);
         // Add your form submission logic here
+        axios.post('https://localhost:7073/RegisterVet', formData2).then(response => {
+
+    });
     };
 
   return (
