@@ -8,6 +8,7 @@ function Layout() {
     const currentLocation = useLocation();
     const [isAuth,setAuth] = useState(false)
     
+    
     useEffect(() => {
         if(currentLocation.pathname === "/auth") {
             setTitle("Auth")

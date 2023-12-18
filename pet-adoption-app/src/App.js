@@ -28,17 +28,16 @@ function App() {
                   <Route index element={<Home />} />
                   <Route path='/auth' element={<Auth />} />
                   <Route path='/list' element={<List />} />
-                  <Route path='/details' element={<Details />} />
                   <Route path='/profile' element={<Profile />} />
                   <Route path='/adminMain' element={<AdminM />} />
-                  <Route path='/adminDetails' element={<AdminD />} />
+                  <Route path='/adminDetails/:id' element={<AdminD />} />
                   <Route path='/listShelter' element={<ListS />} />
                   <Route path='/profileShelter' element={<ProfileS />} />
-                  <Route path='/detailsShelter' element={<DetailsS />} />
+                  <Route path='/detailsShelter/:id' element={<DetailsS />} />
                   <Route path='/addPet' element={<AddPet />} />
                   <Route path='/profileVet' element={<ProfileVet />} />
-                  <Route path='/detailsVet' element={<DetailsV />} />
-
+                  <Route path='/detailsVet/:id' element={<DetailsV />} />
+                  <Route path="/details/:id" element={<Details/>}/>
                 </Route>
             </Routes>
         </Router>

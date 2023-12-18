@@ -21,6 +21,12 @@ function Profile() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const vets = [
+    { id: 1, name: 'Lion' },
+    { id: 2, name: 'Elephant' },
+    { id: 3, name: 'Giraffe' },
+  ];
   return (
     <div className="flex flex-col items-center space-y-3 p-3">
 
@@ -55,13 +61,18 @@ function Profile() {
               List of Vets
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }} className="flex flex-col items-center space-y-4">
-            <Link to="/detailsVet" className="flex flex-row bg-bunny-100 rounded-lg border-2 border-bunny-300 w-1/2 justify-between">
+            {vets.map(animal => (
+              <div key={animal.id}>
+                <Link to={`/detailsVet/${animal.id}`} className="flex flex-row bg-bunny-100 rounded-lg border-2 border-bunny-300 justify-between">
                 <div className="flex flex-col p-2 w-3/4text-left">
                     <p>Vet Name: </p>
                     <p>Location: </p>
                 </div>
                 <div className="flex bg-bunny-400 rounded-r-sm w-1/4 items-center justify-center text-white">CU</div>
             </Link> 
+              </div>
+            ))}
+            
             </Typography>
           </Box>
         </Modal>

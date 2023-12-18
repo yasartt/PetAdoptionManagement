@@ -1,8 +1,29 @@
 import {Link } from "react-router-dom";
 import davsan from './../davsan.jpeg';
+import { useState, useEffect } from "react";
+import axios from 'axios';
+
 
 
 function List() {
+
+    const [animals,setAnimals] = useState([])
+    const pets = [
+        { id: 1, name: 'Lion' },
+        { id: 2, name: 'Elephant' },
+        { id: 3, name: 'Giraffe' },
+      ];
+    
+
+
+    useEffect(() => {
+        //axios.get('https://139.179.250.148:7073/api/Pet/GetAllPets').then(response => {
+        //setAnimals(response.data)
+    //})
+      }, []);
+
+
+
   return (
     <div className="List">
 
@@ -11,10 +32,13 @@ function List() {
             <p>Filters</p>
         </div>
 
-        <Link to="/details" className="flex flex-row bg-bunny-100 border-2 border-bunny-400 rounded-xl m-4">
+        <ul>
+        {pets.map(animal => (
+          <li key={animal.id}>
+            <Link to={`/details/${animal.id}`} className="flex flex-row bg-bunny-100 border-2 border-bunny-400 rounded-xl m-4">
             <img src={davsan} alt="Davsan" className="w-1/4 rounded-l-lg overflow-clip"/>
             <div className="flex flex-col space-y-1 w-2/4 m-2 text-white justify-evenly">
-                <p className="bg-bunny-400 rounded-lg p-1">Name:</p>
+                <p className="bg-bunny-400 rounded-lg p-1">Name: {animal.name}</p>
                 <p className="bg-bunny-400 rounded-lg p-1">Type:</p>
                 <div className="flex flex-row space-x-2 justify-around">
                     <p className="bg-bunny-400 rounded-lg p-1">Age:</p>
@@ -23,8 +47,11 @@ function List() {
 
             </div>
             <p className="bg-bunny-400 rounded-lg w-1/4 m-2 text-white p-1">Address:</p>
-
-        </Link>
+            </Link>
+          </li>
+        ))}
+        </ul>
+        
     </div>
   );
 }
