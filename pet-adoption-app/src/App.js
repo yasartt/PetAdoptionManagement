@@ -14,6 +14,8 @@ import ProfileS from './pages/profileShelter';
 import DetailsS from './pages/detailsShelter';
 import './index.css';
 import AddPet from './pages/addPet';
+import ProfileVet from './pages/profileVet';
+import DetailsV from './pages/detailsVet';
 
 
 function App() {
@@ -34,6 +36,9 @@ function App() {
                   <Route path='/profileShelter' element={<ProfileS />} />
                   <Route path='/detailsShelter' element={<DetailsS />} />
                   <Route path='/addPet' element={<AddPet />} />
+                  <Route path='/profileVet' element={<ProfileVet />} />
+                  <Route path='/detailsVet' element={<DetailsV />} />
+
                 </Route>
             </Routes>
         </Router>

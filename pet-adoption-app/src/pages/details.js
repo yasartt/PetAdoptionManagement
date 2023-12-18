@@ -1,6 +1,11 @@
 //import './App.css';
 import {Link } from "react-router-dom";
+
 import davsan from './../davsan.jpeg';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
 
 
 function Details() {
@@ -20,6 +25,27 @@ function Details() {
 
         <p>More information about Pet</p>
         <p className="bg-bunny-100  m-5 rounded-lg w-11/12 p-4">cu</p>
+
+        <div className="mx-5">
+          <Accordion>
+            <AccordionSummary
+              expandIcon={'v'}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography >Health Records</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                malesuada lacus ex, sit amet blandit leo lobortis eget.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+        </div>
+        
+        
+
         <div className="bg-bunny-500 rounded-lg text-white p-3 fixed bottom-10">Apply</div>
 
     </div>

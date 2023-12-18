@@ -5,7 +5,7 @@ function Auth() {
     const [isLogin,setLogin] = useState(true);
     const [acc,setAcc] = useState(0)
 
-    const [addrtype, setAddrtype] = useState(["Adopter", "Shelter"])
+    const [addrtype, setAddrtype] = useState(["Adopter", "Shelter","Vet"])
     const Add = addrtype.map(Add => Add
     )
     const handleAddrTypeChange = (e) => setAcc(e.target.value)
@@ -28,14 +28,14 @@ function Auth() {
 
             </div>
 
-            {!isLogin && (
+            
             < select
                 onChange={e => handleAddrTypeChange(e)}
                 className="border-2 rounded-lg border-slate-800 p-1" >
                 {
                     Add.map((address, key) => <option value={key}>{address}</option>)
                 }
-            </select >)}
+            </select >
             
             {isLogin && (<p>Sign in to your account</p>)}
             {!isLogin && (<p>Sign up for {addrtype[acc]} account</p>)}

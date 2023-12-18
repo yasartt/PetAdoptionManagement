@@ -33,6 +33,9 @@ function Layout() {
         if(currentLocation.pathname === "/listShelter") {
             setTitle("List Shelter")
         }
+        if(currentLocation.pathname === "/profileVet") {
+            setTitle("Vet Profile")
+        }
         if(currentLocation.pathname === "/auth") {
             setAuth(true)
         }
@@ -85,7 +88,7 @@ function Layout() {
                 <Link to="/profileShelter">Profile Shelter</Link>
             </div>
             <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
-                <Link to="/addPet">Add Pet</Link>
+                <Link to="/profileVet">Vet Profile</Link>
             </div>
         </div>
         )}
