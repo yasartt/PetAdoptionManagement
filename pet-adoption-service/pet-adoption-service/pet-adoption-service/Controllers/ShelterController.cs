@@ -27,7 +27,7 @@ namespace pet_adoption_service.Controllers
         }
 
         [HttpGet("vetId")]
-        public async Task<ActionResult<VetBusyHoursView>> GetShelterBusyHours(int shelterId)
+        public async Task<ActionResult<ShelterBusyHoursView>> GetShelterBusyHours(int shelterId)
         {
             return await shelterService.GetShelterBusyHoursAsync(shelterId);
         }
