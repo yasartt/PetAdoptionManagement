@@ -31,6 +31,7 @@ namespace pet_adoption_service.Models
         public string? Address { get; set; }
 
         [MaxLength(255)]
+        [Column("restricted_hours")]
         public string? RestrictedHours { get; set; }
 
 

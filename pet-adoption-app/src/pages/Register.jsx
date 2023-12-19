@@ -24,9 +24,9 @@ function Register({accIndex}) {
     const handleSubmit0 = (e) => {
         e.preventDefault();
         // Handle form submission, e.g., send data to a server or API
-        console.log('Form Data:', formData0);
+        console.log('Adopter:', formData0);
 
-        axios.post('https://localhost:7073/RegisterVet', formData0).then(response => {
+        axios.post('https://localhost:7073/api/User/RegisterAdopter', formData0).then(response => {
 
         });
 
@@ -48,9 +48,9 @@ function Register({accIndex}) {
 
     const handleSubmit1 = (e) => {
         e.preventDefault();
-        console.log('Form Data:', formData1);
+        console.log('Shelter:', formData1);
         // Add your form submission logic here
-        axios.post('https://localhost:7073/RegisterVet', formData1).then(response => {
+        axios.post('https://localhost:7073/api/User/RegisterShelter', formData1).then(response => {
 
         });
 
@@ -76,7 +76,7 @@ function Register({accIndex}) {
         e.preventDefault();
         console.log('Form Data:', formData2);
         // Add your form submission logic here
-        axios.post('https://localhost:7073/RegisterVet', formData2).then(response => {
+        axios.post('https://localhost:7073/api/user/RegisterVet', formData2).then(response => {
 
     });
     };

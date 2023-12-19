@@ -68,6 +68,7 @@ namespace pet_adoption_service.Services
                 Address = shelter.Address,
                 Username = shelter.Username,
                 Password = shelter.Password,
+                RestrictedHours = "",
             };
 
             await _dbContext.Shelters.AddAsync(newShelter);
