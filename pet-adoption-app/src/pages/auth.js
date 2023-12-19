@@ -4,6 +4,7 @@ import Register from './Register.jsx';
 
 function Auth() {
     const [formValues, setFormValues] = useState({
+        userType: '',
         username: '',
         password: ''
       });
@@ -34,6 +35,22 @@ function Auth() {
     )
     const handleAddrTypeChange = (e) => setAcc(e.target.value)
 
+//for login
+    const [accLogin,setAccLogin] = useState(0)
+
+    const addrtypeLogin = ["Adopter", "Shelter", "Veterinarian","Admin"]
+
+    const AddLogin = addrtypeLogin.map(AddLogin => AddLogin
+    )
+    const handleAddrTypeChangeLogin = (e) => {
+        const newAccLogin = e.target.value;
+        setAccLogin(newAccLogin);
+        setFormValues({
+            ...formValues,
+            userType: addrtypeLogin[newAccLogin]
+        });
+    };
+//
     useEffect(() => {
         setAcc(0)
       }, [isLogin]);
@@ -66,6 +83,15 @@ function Auth() {
             {isLogin && (
             <div className="flex flex-col justify-center space-y-3">
                 <form className="flex flex-col items-center" onSubmit={handleSubmit}>
+
+                    < select
+                        onChange={e => handleAddrTypeChangeLogin(e)}
+                        className="border-2 rounded-lg border-slate-800 p-1" >
+                        {
+                            AddLogin.map((address, key) => <option value={key}>{address}</option>)
+                        }
+                    </select >
+                    
                     <label className="self-start text-sm">Username:</label>
                     <input 
                         className="rounded-lg bg-bunny-100 p-1"  
@@ -100,11 +126,6 @@ function Auth() {
                 </form>
 
             </div>
-            {isLogin && (
-            <div className="p-3 bg-bunny-400 rounded-2xl text-white">Login</div>
-            )}
-            {!isLogin && (
-            <div className="p-3 bg-bunny-400 rounded-2xl text-white">Register</div>
             )}
             {!isLogin &&(
             <Register accIndex={acc}>
@@ -112,7 +133,7 @@ function Auth() {
             </Register>
         )}
         </div>
-    </div>
+    </div>                    
     )
 
 }
