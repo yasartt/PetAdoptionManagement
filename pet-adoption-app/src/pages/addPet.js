@@ -1,9 +1,29 @@
 //import './App.css';
 import {Link } from "react-router-dom";
 import davsan from './../davsan.jpeg';
+import React, { useState } from 'react';
+
 
 
 function AddPet() {
+    const [formData, setFormData] = useState({
+        petPhoto: null,
+        petName: '',
+        petAge: '',
+        petType: '',
+        petSex: '',
+        petInfo: ''
+    });
+    const handleInputChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.name === 'petPhoto' ? e.target.files[0] : e.target.name]: e.target.value
+        });
+    };
+        const handleSubmit = () => {
+        console.log('Form Data:', formData);
+        // Implement submission logic here
+    };
   return (
     <div className="flex flex-col items-center">
 
@@ -18,12 +38,22 @@ function AddPet() {
 
             <div className="flex flex-col w-1/2 space-y-2 items-center">
                 <form className="flex flex-col items-center">
-                    <label className="self-start text-sm">Username:</label>
-                    <input  className="rounded-lg bg-bunny-100 p-1"  type="text"/> 
+                    <label className="self-start text-sm">Pet name: </label>
+                    <input  
+                    type="text"
+                    name="petName"
+                    value={formData.petName}
+                    className="rounded-lg bg-bunny-100 p-1"  
+                    /> 
                 </form>
                 <form className="flex flex-col items-center">
-                    <label className="self-start text-sm">Age:</label>
-                    <input  className="rounded-lg bg-bunny-100 p-1"  type="text"/> 
+                    <label className="self-start tex    t-sm">Age:</label>
+                    <input  
+                    type="number"
+                    name="petAge"
+                    value={formData.petAge}
+                    onChange={handleInputChange}
+                    className="rounded-lg bg-bunny-100 p-1"/> 
                 </form>
 
                 <div className="flex flex-col items-start">

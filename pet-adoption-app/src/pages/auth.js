@@ -2,8 +2,27 @@ import { useState,useEffect } from 'react';
 import logo from './../rabbit.png';
 import Register from './Register.jsx';
 import axios from 'axios'
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 function Auth() {
+    const location = useLocation();
+    const [registrationMessage, setRegistrationMessage] = useState('');
+    const navigate = useNavigate();
+    const [loginError,setLoginError] = useState("");
+
+    useEffect(() => {
+        // Check if there is a state with a message
+        if (location.state?.message) {
+            setLogin(true);
+            setRegistrationMessage(location.state.message);
+            // Optionally, clear the message from the location state
+            location.state.message = '';
+        }
+    }, [location]);
+
+    
     const [formValues, setFormValues] = useState({
         userType: '',
         username: '',
@@ -20,6 +39,8 @@ function Auth() {
       // Handle form submit
       const handleSubmit = (e) => {
         e.preventDefault(); // Prevent default form submission behavior
+        setRegistrationMessage('');
+        setLoginError('');
 
         // TODO: Implement what should happen on form submit
         //console.log('Form submitted:', formValues);
@@ -27,6 +48,18 @@ function Auth() {
         //axios.post('https://localhost:7073/api/User/Loginuser', formValues).then(response => {});
 
         localStorage.setItem('userType', formValues.userType);
+        localStorage.setItem('username', formValues.username);
+        axios.get(`https://localhost:7073/api/User/Loginuser/${formValues.userType}/${formValues.username}/${formValues.password}`)
+        .then(response => {
+            console.log('Login successful:', response.data);
+            navigate('/');
+        })
+        .catch(error => {
+            setLoginError('Login failed'); // Set login error message
+            console.log('Login failed:', error);
+
+        })
+
 
 
         // You might want to call an API to submit these values
@@ -58,16 +91,33 @@ function Auth() {
         });
     };
 //
-useEffect(() => {
-    setAccLogin(0)
-    setFormValues({
-        ...formValues,
-        userType: addrtypeLogin[0]
-    });
-},[])
+        useEffect(() => {
+            setAccLogin(0)
+            setFormValues({
+                ...formValues,
+                userType: addrtypeLogin[0]
+            });
+
+        },[])
+
+        useEffect(() => {
+            setAcc(0)
+        }, [isLogin]);
+
     useEffect(() => {
-        setAcc(0)
-      }, [isLogin]);
+    // When isLogin is set to false, clear the registration message
+    if (!isLogin) {
+        setRegistrationMessage('');
+        setLoginError('');
+    }
+    }, [isLogin]);
+
+    useEffect(() => {
+        // When isLogin is set to false, clear the registration message
+        if (isLogin) {
+            setLoginError('');
+        }
+    }, [isLogin]);
 
   return (
     <div className="Auth">
@@ -93,6 +143,14 @@ useEffect(() => {
             </select >)}
             
             {isLogin && (<p>Sign in to your account</p>)}
+
+            {registrationMessage && <div className="text-green-500 bg-green-100 border border-green-500 p-2 rounded">{registrationMessage}</div>}
+            {loginError && (
+                <div className="text-red-500 bg-red-100 border border-red-500 p-2 rounded">
+                    {loginError}
+                </div>
+            )}
+
             {!isLogin && (<p>Sign up for {addrtype[acc]} account</p>)}
             {isLogin && (
             <div className="flex flex-col justify-center space-y-3">
