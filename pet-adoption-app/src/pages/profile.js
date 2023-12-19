@@ -25,31 +25,72 @@ function Profile() {
   const vets = [
     { id: 1, name: 'Lion' },
     { id: 2, name: 'Elephant' },
-    { id: 3, name: 'Giraffe' },
+    { id: 3, name: 'Giraffe'  },
   ];
+
+  const animals = [
+    {
+    name: "pamuk",
+    gender:"male",
+    age: 8,
+    breed: "sulalesini" , 
+    status:"iyi",
+    photo_id: "../public/assets/rabbit.png", 
+    vets: [
+      { id: 1, name: 'Lion' },
+      { id: 2, name: 'Elephant' },
+      { id: 3, name: 'Giraffe' },
+    ] },
+    {name: "pamuk",
+    gender:"male",
+    age: 87,
+    breed: "sulalesini" , 
+    status:"iyi",
+    photo_id: "../public/assets/rabbit.png", 
+    vets: [
+      { id: 1, name: 'Liasdon' },
+      { id: 2, name: 'Elepasdhant' },
+      { id: 3, name: 'Girasaffe' },
+    ] },
+    {name: "paasdmuk",
+    gender:"maasdle",
+    age: 89,
+    breed: "sualalesini" , 
+    status:"iyai",
+    photo_id: "../public/assets/rabbit.png", 
+    vets: [
+      { id: 1, name: 'Lionasd' },
+      { id: 2, name: 'Elepasdhant' },
+      { id: 3, name: 'Giraasdffe' },
+    ] }
+  ];
+  ///const [currentName] = useState(localStorage.getItem(username));
+
   return (
+
     <div className="flex flex-col items-center space-y-3 p-3">
 
        <p>Name:</p>
        <p>Adoption Information</p>
-
+       {animals.map((animal, index) => (
        <div className="flex flex-row bg-bunny-100 border-2 border-bunny-400 rounded-xl m-4">
             <img src={davsan} alt="Davsan" className="w-1/4 rounded-l-lg overflow-clip"/>
             <div className="flex flex-col space-y-1 w-2/4 m-2 text-white justify-evenly">
-                <p className="bg-bunny-400 rounded-lg p-1">Name:</p>
-                <p className="bg-bunny-400 rounded-lg p-1">Type:</p>
+                <p className="bg-bunny-400 rounded-lg p-1">Name: {animal.name}</p>
+                <p className="bg-bunny-400 rounded-lg p-1">Type: {animal.breed}</p>
                 <div className="flex flex-row space-x-2 justify-around">
-                    <p className="bg-bunny-400 rounded-lg p-1">Age:</p>
-                    <p className="bg-bunny-400 rounded-lg p-1">Sex:</p>
+                    <p className="bg-bunny-400 rounded-lg p-1">Age: {animal.age}</p>
+                    <p className="bg-bunny-400 rounded-lg p-1">Sex: {animal.gender}</p>
                 </div>                
 
             </div>
             <div className="flex flex-col w-1/4 space-y-1 justify-evenly p-1">
-                <p className="bg-bunny-400 rounded-lg p-1 text-white">Status:</p>
+                <p className="bg-bunny-400 rounded-lg p-1 text-white">Status: {animal.status}</p>
                 <p className="bg-bunny-500 rounded-lg p-1 text-white">Schedule</p>
                 <button onClick={handleOpen} className="bg-bunny-500 rounded-lg p-1 text-white">Vet App.</button>
             </div>
         </div>
+        ))}
         <Modal
         open={open}
         onClose={handleClose}
