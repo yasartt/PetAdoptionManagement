@@ -4,13 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace pet_adoption_service.Models
 {
-    [Table("adoption_application")]
-    public class AdoptionApplication
+    [Table("adopt")]
+    public class Adopt
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("adoption_application_id")]
-        public int AdoptionApplicationId { get; set; }
+        public int adopt_id { get; set; }
 
         [Required]
         [ForeignKey("PetAdopter")]
@@ -18,27 +17,19 @@ namespace pet_adoption_service.Models
         public int PetAdopterId { get; set; }
 
         [Required]
-        [ForeignKey("Shelter")]
-        [Column("shelter_id")]
-        public int ShelterId { get; set; }
-
-        [Required]
         [ForeignKey("Pet")]
         [Column("pet_id")]
         public int PetId { get; set; }
 
         [Required]
-        [Column("application_date")]
-        public DateTime ApplicationDate { get; set; }
+        public DateTime start_date { get; set; }
+
+        public DateTime? end_date { get; set; }
 
         [Required]
-        [Column("status")]
-        public int? Status { get; set; }
+        public bool is_Current { get; set; }
 
-        // Navigation properties for related entities
         public PetAdopter? PetAdopter { get; set; }
-
-        public Shelter? Shelter { get; set; }
 
         public Pet? Pet { get; set; }
     }

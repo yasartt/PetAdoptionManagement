@@ -4,19 +4,30 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace pet_adoption_service.Models
 {
+    [Table("shelter_appointments")]
     public class ShelterAppointment
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("appointment_id")]
         public int AppointmentId { get; set; }
 
         [Required]
-        public int ShelterId { get; set; }
+        [Column("shelter_id")]
+        [ForeignKey("Shelter")]
+        public int? ShelterId { get; set; }
 
         [Required]
-        public int PetId { get; set; }
+        [Column("pet_adopter_id")]
+        [ForeignKey("Pet")]
+        public int? PetAdopterId { get; set; }
 
         [Required]
-        public DateTime AppointmentDate { get; set; }
+        [Column("appointment_date")]
+        public DateTime? AppointmentDate { get; set; }
+
+        // Navigation properties for related entities
+        public Shelter? Shelter { get; set; }
+        public PetAdopter? PetAdopter { get; set; }
     }
 }

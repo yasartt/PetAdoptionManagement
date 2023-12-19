@@ -19,10 +19,10 @@ namespace pet_adoption_service.Services
         [ProducesResponseType(typeof(NoContentResult), (int)HttpStatusCode.NoContent)]
         public async Task<List<Pet>> GetPetsByShelterAsync(int shelterId)
         {
-            var petList = await _dbContext.Pets.Where(q => q.ShelterId == shelterId).ToListAsync();
+            //var petList = await _dbContext.Pets.Where(q => q.ShelterId == shelterId).ToListAsync();
             
 
-            return petList;
+            return null;
         }
 
         public async Task<ShelterBusyHoursView> GetShelterBusyHoursAsync(int shelterId)

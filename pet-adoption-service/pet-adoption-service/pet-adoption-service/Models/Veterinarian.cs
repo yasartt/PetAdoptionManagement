@@ -9,25 +9,33 @@ namespace pet_adoption_service.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("userId")]
+        [Column("user_id")]
         public int UserId { get; set; }
 
         [Required]
         [Column("username")]
+        [MaxLength(255)]
         public string Username { get; set; }
 
         [Required]
         [Column("password")]
+        [MaxLength(255)]
         public string Password { get; set; }
+
         [Column("location")]
-        public string Location { get; set; }
+        [MaxLength(255)]
+        public string? Location { get; set; }
 
         [Column("name")]
-        public string Name { get; set; }
+        [MaxLength(255)]
+        public string? Name { get; set; }
 
         [Column("specialization")]
-        public string Specialization { get; set; }
+        [MaxLength(255)]
+        public string? Specialization { get; set; }
 
+        [MaxLength(255)]
+        [Column("restricted_hours")]
         public string? RestrictedHours { get; set; }
     }
 }

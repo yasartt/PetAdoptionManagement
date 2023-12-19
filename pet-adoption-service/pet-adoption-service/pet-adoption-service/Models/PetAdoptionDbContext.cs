@@ -20,6 +20,13 @@ namespace pet_adoption_service.Models
         public DbSet<AdoptionApplication> AdoptionApplications { get; set; }
         public DbSet<VetAppointment> VetAppointments { get; set;}
         public DbSet<ShelterAppointment> ShelterAppointments { get; set; }
+        
+        public DbSet<HealthRecord> HealthRecords { get; set; }
+        public DbSet<PetCareInfo> PetCareInfos { get; set; }
+        public DbSet<Adopt> Adopts { get; set; }
+        public DbSet<Stay> Stays { get; set; }
+        public DbSet<ExpertAdvice> ExpertAdvices { get; set;}
+
     }
 }
 

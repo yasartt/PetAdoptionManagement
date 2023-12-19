@@ -1,33 +1,34 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using pet_adoption_service.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace pet_adoption_service.Models
 {
-    [Table("vet_appointments")]
-    public class VetAppointment
+    [Table("expert_advice")]
+    public class ExpertAdvice
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("appointment_id")]
-        public int AppointmentId { get; set; }
-
+        [Column("advice_id")]
         [Required]
-        [Column("vet_id")]
+        public int adviceId { get; set; }
+
         [ForeignKey("Veterinarian")]
-        public int VetId { get; set; }
+        public int veterinarian_id { get; set; }
 
-        [Required]
-        [Column("pet_id")]
         [ForeignKey("Pet")]
-        public int PetId { get; set; }
+        public int pet_id { get; set; }
 
         [Required]
-        [Column("appointment_date")]
-        public DateTime? AppointmentDate { get; set; }
+        public DateTime advice_date { get; set; }
+
+        [StringLength(2000)]
+        public string advice { get; set; }
 
         // Navigation properties for related entities
         public Veterinarian? Veterinarian { get; set; }
+
         public Pet? Pet { get; set; }
+
     }
 }

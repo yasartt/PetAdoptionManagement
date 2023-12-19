@@ -21,10 +21,16 @@ namespace pet_adoption_service.Services
             return newAdopter;
         }
 
-        public async Task<IEnumerable<PetAdopter>> GetAllAdopters()
+        public async Task<List<PetAdopter>> GetAllAdopters()
         {
             return await _dbContext.PetAdopters.ToListAsync();
         }
 
+        /**
+        public async Task <List<Pet>> GetAllPetsOfAdoptersAsync(int petAdopterId)
+        {
+            var petIdList = await _dbContext.Adopts.Where(q => q.)
+        }
+        */
     }
 }

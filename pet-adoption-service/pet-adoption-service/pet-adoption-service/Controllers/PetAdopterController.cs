@@ -39,12 +39,20 @@ namespace pet_adoption_service.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<PetAdopter>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<PetAdopter>>> GetAllAdopters()
+        [ProducesResponseType(typeof(List<PetAdopter>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<List<PetAdopter>>> GetAllAdopters()
         {
             var adopters = await _petAdopterService.GetAllAdopters();
             return Ok(adopters);
         }
+
+        /**
+        [HttpGet("petAdopterId")]
+        [ProducesResponseType(typeof(List<Pet>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<List<Pet>>> GetPetsOfAdopter(int petAdopterId)
+        {
+            return await _petAdopterService.GetAllPetsOfAdoptersAsync(petAdopterId);
+        }*/
 
     }
 }
