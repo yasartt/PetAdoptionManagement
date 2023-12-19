@@ -72,5 +72,20 @@ namespace pet_adoption_service.Services
             return true;
         }
 
+        public async Task<List<Pet>> GetAllPetsOfSheltersAsync(int shelterId)
+        {
+            var petList = await _dbContext.Stays.Where(q => q.ShelterId == shelterId).Include(q => q.Pet).Select(q => q.Pet).ToListAsync();
+
+            if (petList.Count > 0)
+            {
+                return petList;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
     }
 }

@@ -16,6 +16,10 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<ShelterService>();
+builder.Services.AddScoped<PetAdopterService>();
+builder.Services.AddScoped<PetService>();
+builder.Services.AddScoped<VeterinarianService>();
 
 
 builder.Services.AddControllers();

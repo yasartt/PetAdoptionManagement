@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using pet_adoption_service.Models;
 using pet_adoption_service.Services;
+using System.Net;
 
 namespace pet_adoption_service.Controllers
 {
@@ -36,6 +37,13 @@ namespace pet_adoption_service.Controllers
         public async Task<ActionResult<Boolean>> AddAppointment(int vetId, int petAdopterId, DateTime date)
         {
             return await shelterService.AddAppointmentAsync(vetId, petAdopterId, date);
+        }
+
+        [HttpGet("shelterId")]
+        [ProducesResponseType(typeof(List<Pet>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<List<Pet>>> GetPetsOfShelter(int shelterId)
+        {
+            return await shelterService.GetAllPetsOfSheltersAsync(shelterId);
         }
     }
 }

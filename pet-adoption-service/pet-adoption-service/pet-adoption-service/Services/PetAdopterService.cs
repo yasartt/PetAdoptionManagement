@@ -26,11 +26,20 @@ namespace pet_adoption_service.Services
             return await _dbContext.PetAdopters.ToListAsync();
         }
 
-        /**
         public async Task <List<Pet>> GetAllPetsOfAdoptersAsync(int petAdopterId)
         {
-            var petIdList = await _dbContext.Adopts.Where(q => q.)
+            var petList = await _dbContext.Adopts.Where(q => q.PetAdopterId == petAdopterId).Include(q => q.Pet).Select(q => q.Pet).ToListAsync();
+            
+            if(petList.Count > 0)
+            {
+                return petList;
+            }
+            else
+            {
+                return null;
+            }
+
         }
-        */
+        
     }
 }

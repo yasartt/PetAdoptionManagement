@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace pet_adoption_service.Models
 {
+    [Table("stay")]
     public class Stay
     {
         [Key]
