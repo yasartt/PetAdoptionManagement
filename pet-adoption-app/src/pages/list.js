@@ -17,9 +17,9 @@ function List() {
 
 
     useEffect(() => {
-        //axios.get('https://139.179.250.148:7073/api/Pet/GetAllPets').then(response => {
-        //setAnimals(response.data)
-    //})
+        axios.get('https://localhost:7073/api/Pet/GetAllPets').then(response => {
+        setAnimals(response.data)
+    })
       }, []);
 
 
@@ -33,13 +33,13 @@ function List() {
         </div>
 
         <ul>
-        {pets.map(animal => (
-          <li key={animal.id}>
+        {animals.map(animal => (
+          <li key={animal.petId}>
             <Link to={`/details/${animal.id}`} className="flex flex-row bg-bunny-100 border-2 border-bunny-400 rounded-xl m-4">
             <img src={davsan} alt="Davsan" className="w-1/4 rounded-l-lg overflow-clip"/>
             <div className="flex flex-col space-y-1 w-2/4 m-2 text-white justify-evenly">
                 <p className="bg-bunny-400 rounded-lg p-1">Name: {animal.name}</p>
-                <p className="bg-bunny-400 rounded-lg p-1">Type:</p>
+                <p className="bg-bunny-400 rounded-lg p-1">Type {animal.petId}:</p>
                 <div className="flex flex-row space-x-2 justify-around">
                     <p className="bg-bunny-400 rounded-lg p-1">Age:</p>
                     <p className="bg-bunny-400 rounded-lg p-1">Sex:</p>
