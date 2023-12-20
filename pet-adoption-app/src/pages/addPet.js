@@ -2,17 +2,20 @@
 import {Link } from "react-router-dom";
 import davsan from './../davsan.jpeg';
 import React, { useState } from 'react';
+import axios from 'axios';
 
 
 
 function AddPet() {
     const [formData, setFormData] = useState({
         petPhoto: null,
-        petName: '',
-        petAge: '',
-        petType: '',
-        petSex: '',
-        petInfo: ''
+        name: '',
+        age: '',
+        breed: '',
+        gender: '',
+        status: '', // aciklama
+        isAvailable: false,
+        photoId: '',
     });
     const handleInputChange = (e) => {
         setFormData({
@@ -20,9 +23,14 @@ function AddPet() {
             [e.name === 'petPhoto' ? e.target.files[0] : e.target.name]: e.target.value
         });
     };
-        const handleSubmit = () => {
-        console.log('Form Data:', formData);
-        // Implement submission logic here
+
+    const handleSubmit = () => {
+        axios.post('https://localhost:7073/api/Pet/AddPet', formData).then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        });
     };
   return (
     <div className="flex flex-col items-center">

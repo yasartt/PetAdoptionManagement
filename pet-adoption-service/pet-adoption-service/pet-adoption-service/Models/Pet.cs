@@ -33,5 +33,6 @@ namespace pet_adoption_service.Models
         [Column("is_available")]
         public int? IsAvailable { get; set; }
 
+        public int? photo_id { get; set; }
     }
 }

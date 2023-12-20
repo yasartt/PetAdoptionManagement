@@ -4,7 +4,8 @@ import davsan from './../davsan.jpeg';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from 'axios';
 
 const style = {
   position: 'absolute',
@@ -19,6 +20,8 @@ const style = {
 };
 function Profile() {
   const [open, setOpen] = useState(false);
+  const [animals, setAnimals] = useState([]);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -28,7 +31,7 @@ function Profile() {
     { id: 3, name: 'Giraffe'  },
   ];
 
-  const animals = [
+  /**const animals = [
     {
     name: "pamuk",
     gender:"male",
@@ -63,9 +66,18 @@ function Profile() {
       { id: 2, name: 'Elepasdhant' },
       { id: 3, name: 'Giraasdffe' },
     ] }
-  ];
+  ];*/
   ///const [currentName] = useState(localStorage.getItem(username));
 
+/** 
+  useEffect(() => {
+    axios.get(`https://localhost:7073/api/PetAdopter/GetPetsOfAdopter`
+        ).then(response => {
+            console.log(response);
+            setAnimals(response.data);
+        });
+  }, [userId])
+*/
   return (
 
     <div className="flex flex-col items-center space-y-3 p-3">

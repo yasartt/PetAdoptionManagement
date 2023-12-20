@@ -39,21 +39,21 @@ function Register({accIndex}) {
 
         axios.post('https://localhost:7073/api/User/RegisterAdopter', formData0)
     .then(response => {
-        // Ýstek baþarýlý olduðunda burasý çalýþýr
+        // ï¿½stek baï¿½arï¿½lï¿½ olduï¿½unda burasï¿½ ï¿½alï¿½ï¿½ï¿½r
         setuserNameError("");
         navigate('/auth', { state: { message: "Successfully registered. Now login." } });
-        //alert("Baþarýlý");
+        //alert("Baï¿½arï¿½lï¿½");
     })
     .catch(error => {
-        // Ýstek baþarýsýz olduðunda burasý çalýþýr
+        // ï¿½stek baï¿½arï¿½sï¿½z olduï¿½unda burasï¿½ ï¿½alï¿½ï¿½ï¿½r
         if (error.response && error.response.status === 409) {
-            // 409 Conflict durumu için özel bir iþlem yapabilirsiniz
+            // 409 Conflict durumu iï¿½in ï¿½zel bir iï¿½lem yapabilirsiniz
             setuserNameError(error.response.data)
             //alert(error.response.data);
         } else {
             setuserNameError(error.response.data)
-            // Diðer tüm hatalar için genel bir iþlem
-            //alert("Baþarýsýz: Bir hata oluþtu");
+            // Diï¿½er tï¿½m hatalar iï¿½in genel bir iï¿½lem
+            //alert("Baï¿½arï¿½sï¿½z: Bir hata oluï¿½tu");
         }
     });
     setFormError(""); // Clear any previous error message
@@ -87,21 +87,21 @@ function Register({accIndex}) {
         // Add your form submission logic here
         axios.post('https://localhost:7073/api/User/RegisterShelter', formData1)
         .then(response => {
-            // Ýstek baþarýlý olduðunda burasý çalýþýr
+            // ï¿½stek baï¿½arï¿½lï¿½ olduï¿½unda burasï¿½ ï¿½alï¿½ï¿½ï¿½r
             setuserNameError("");
             navigate('/auth', { state: { message: "Successfully registered. Now login." } });
-            //alert("Baþarýlý");
+            //alert("Baï¿½arï¿½lï¿½");
         })
         .catch(error => {
-            // Ýstek baþarýsýz olduðunda burasý çalýþýr
+            // ï¿½stek baï¿½arï¿½sï¿½z olduï¿½unda burasï¿½ ï¿½alï¿½ï¿½ï¿½r
             if (error.response && error.response.status === 409) {
-                // 409 Conflict durumu için özel bir iþlem yapabilirsiniz
+                // 409 Conflict durumu iï¿½in ï¿½zel bir iï¿½lem yapabilirsiniz
                 setuserNameError(error.response.data)
                 //alert(error.response.data);
             } else {
                 setuserNameError(error.response.data)
-                // Diðer tüm hatalar için genel bir iþlem
-                //alert("Baþarýsýz: Bir hata oluþtu");
+                // Diï¿½er tï¿½m hatalar iï¿½in genel bir iï¿½lem
+                //alert("Baï¿½arï¿½sï¿½z: Bir hata oluï¿½tu");
             }
         });
         setFormError(""); // Clear any previous error message
@@ -136,21 +136,21 @@ function Register({accIndex}) {
         // Add your form submission logic here
         axios.post('https://localhost:7073/api/user/RegisterVet', formData2)
         .then(response => {
-            // Ýstek baþarýlý olduðunda burasý çalýþýr
+            // ï¿½stek baï¿½arï¿½lï¿½ olduï¿½unda burasï¿½ ï¿½alï¿½ï¿½ï¿½r
             setuserNameError("");
             navigate('/auth', { state: { message: "Successfully registered. Now login." } });
-            //alert("Baþarýlý");
+            //alert("Baï¿½arï¿½lï¿½");
         })
         .catch(error => {
-            // Ýstek baþarýsýz olduðunda burasý çalýþýr
+            // ï¿½stek baï¿½arï¿½sï¿½z olduï¿½unda burasï¿½ ï¿½alï¿½ï¿½ï¿½r
             if (error.response && error.response.status === 409) {
-                // 409 Conflict durumu için özel bir iþlem yapabilirsiniz
+                // 409 Conflict durumu iï¿½in ï¿½zel bir iï¿½lem yapabilirsiniz
                 setuserNameError(error.response.data)
                 //alert(error.response.data);
             } else {
                 setuserNameError(error.response.data)
-                // Diðer tüm hatalar için genel bir iþlem
-                //alert("Baþarýsýz: Bir hata oluþtu");
+                // Diï¿½er tï¿½m hatalar iï¿½in genel bir iï¿½lem
+                //alert("Baï¿½arï¿½sï¿½z: Bir hata oluï¿½tu");
             }
         });
         setFormError(""); // Clear any previous error message
@@ -341,6 +341,7 @@ function Register({accIndex}) {
             {formError && <div className="text-red-500">{formError}</div>}
         </div>
     </div>                    
+    </div>
     )
 
 }

@@ -87,5 +87,12 @@ namespace pet_adoption_service.Services
 
         }
 
+        public async Task<Shelter> GetShelterByIdAsync(int shelterId)
+        {
+            var resultShelter = await _dbContext.Shelters.SingleOrDefaultAsync(q => q.UserId == shelterId);
+
+            return resultShelter;
+        }
+
     }
 }

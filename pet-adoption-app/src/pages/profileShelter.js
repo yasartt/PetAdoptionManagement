@@ -1,9 +1,29 @@
 //import './App.css';
 import {Link } from "react-router-dom";
 import davsan from './../davsan.jpeg';
+import { useState, React, useEffect } from 'react';
+import axios from 'axios';
 
 
-function ProfileS() {
+function ProfileS(props) {
+  const [theShelter, setTheShelter] = useState([]);
+
+  const {shelterId} = props;
+
+  // userId'yi local storage'dan çek
+
+  /** 
+  useEffect(() => {
+      if(!shelterId){
+        axios.get(`https://localhost:7073/api/Shelter/GetShelterById/${userId}`
+          ).then(response => {
+              console.log(response);
+              setTheShelter(response.data);
+          });
+      }
+      
+    }, [shelterId]);*/
+
   return (
     <div className="flex flex-col items-center space-y-3 p-3">
 
