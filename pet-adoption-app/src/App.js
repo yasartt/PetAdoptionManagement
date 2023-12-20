@@ -17,6 +17,7 @@ import AddPet from './pages/addPet';
 import ProfileVet from './pages/profileVet';
 import DetailsV from './pages/detailsVet';
 import ViewShelter from './pages/viewShelter';
+import SelectAppointment from './components/SelectAppointment';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
                   <Route path='/detailsVet/:id' element={<DetailsV />} />
                   <Route path="/details/:id" element={<Details/>}/>
                   <Route path="/viewShelter/:id" element={<ViewShelter/>}/>
+                  <Route path='shedule' element = {<SelectAppointment/>}/>
                 </Route>
             </Routes>
         </Router>
