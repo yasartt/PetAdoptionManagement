@@ -11,16 +11,18 @@ function List() {
   const [minAge, setMinAge] = useState('');
   const [maxAge, setMaxAge] = useState('');
   const [sex, setSex] = useState('');
+  const[breed,setBreed] = useState("");
 
   const handleFilterSubmit = () => {
     // Construct the query parameters based on the filter inputs
     const params = new URLSearchParams({
         minAge: minAge,
         maxAge: maxAge,
-        sex: sex
+        sex: sex,
+        breed : breed
     }).toString();
 
-    axios.get(`https://localhost:7073/api/Pet/GetAllPets?${params}`).then(response => {
+    axios.get(`https://localhost:7073/api/Pet/FilterPets?${params}`).then(response => {
         setAnimals(response.data);
     });
 };
@@ -45,6 +47,14 @@ function List() {
             <input className="border-2 border-bunny-400 rounded-lg p-1 bg-bunny-100" type="text" placeholder="Search..."/>
             <div className="flex justify-around mt-5 items-center space-x-5">
                 {/* Filter Inputs */}
+                <label>Breed </label>
+                <input
+                    className="border-2 border-bunny-400 rounded-lg p-1 bg-bunny-100"
+                    type="text"
+                    placeholder="Breed"
+                    value={breed}
+                    onChange={e => setBreed(e.target.value)}
+                />
                 <label>Min Age: </label>
                 <input
                     className="border-2 border-bunny-400 rounded-lg p-1 bg-bunny-100"
