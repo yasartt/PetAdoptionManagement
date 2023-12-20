@@ -9,12 +9,15 @@ function Layout() {
     const [isAuth,setAuth] = useState(false);
 
     const userType = localStorage.getItem('userType');
+    const username = localStorage.getItem('username'); // Assuming the key for username is 'username'
+
 
     const[isAdapterVisable] = useState(userType === "Adopter");
     const[isShelterVisable] = useState(userType === "Shelter");
     const[isVeterinarianVisable] = useState(userType === "Veterinarian");
     const[isAdminVisable] = useState(userType === "Admin");
-    console.log(localStorage.getItem("userType"))
+
+    //console.log(localStorage.getItem("userType"))
 
     
     useEffect(() => {
@@ -63,9 +66,21 @@ function Layout() {
         <Link to="/">Home</Link>
         
       </nav>
+      
+
       <div className="flex flex-row">
         {!isAuth && (
+            
         <div className="h-screen bg-bunny-200 w-1/6 flex flex-col space-y-3">
+                        
+            <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
+                <p >{userType} Type</p>
+            </div>
+
+            <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
+                <p ></p>
+                <p > Welcome {username} </p>
+            </div>
 
             <div className="p-3 bg-bunny-400 text-white mt-12 mx-2 rounded-xl flex justify-center">
                 <Link to="/">Home</Link>
@@ -118,10 +133,7 @@ function Layout() {
             <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
                 <Link to="/profileVet">Vet Profile</Link>
             </div>
-            )}
-       
-
-
+            )}  
 
         </div>
         )}

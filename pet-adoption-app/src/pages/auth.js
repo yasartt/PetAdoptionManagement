@@ -56,7 +56,7 @@ function Auth() {
             }else{
                 localStorage.setItem('userId', response.data.user.userId);
                 localStorage.setItem('userType', formValues.userType);
-                localStorage.setItem('username', response.data.username);
+                localStorage.setItem('username', response.data.user.username);
 
                console.log('Login successful:', response.data);
             navigate('/'); 
