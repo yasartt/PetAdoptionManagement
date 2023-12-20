@@ -48,6 +48,7 @@ namespace pet_adoption_service.Services
             }
 
             // check if that hour is available
+            // ...
 
             await _dbContext.VetAppointments.AddAsync(new VetAppointment()
             {

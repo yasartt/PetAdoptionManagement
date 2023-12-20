@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios'
 
 const SelectAppointment = ({ props }) => {
+
+  // propsla veteriner ve pet id gelecek veya shelter ve petAdopter id gelecek
+
   const [seciliSeans, setSeciliSeans] = useState(0);
   const [seciliGun, setSeciliGun] = useState(0);
   const [seciliHafta, setSeciliHafta] = useState({
@@ -8,6 +12,8 @@ const SelectAppointment = ({ props }) => {
     baslangicTarihi: new Date('2023-12-11'), // Set the initial start date
     bitisTarihi: new Date('2023-12-17'), // Set the initial end date
   });
+
+  const [trigger, setTrigger] = useState(0);
 
   const Weekdays = {
     0: 'Monday',
@@ -44,10 +50,14 @@ const SelectAppointment = ({ props }) => {
     21: '19:30-20:00',
   };
 
-/**   useEffect(() => {
+useEffect(() => {
     // call to the api with veterinarian id to get the available appointment hours with seciliGun and seciliSeans
 
-  }, []);*/
+    axios.get(`https://localhost:7073/api/Veterinarian/GetVetBusyHours/${props.vetId}`
+        ).then(response => {
+
+        });
+  }, [trigger]);
 
   const calculateDateRange = (hafta) => {
     const today = new Date();
@@ -134,6 +144,26 @@ const SelectAppointment = ({ props }) => {
     gonderilecekTarih.setHours(saatIndex + 9);
     //console.log('Selected date:', seciliHafta.baslangicTarihi + gunIndex);
     console.log('Gonderilecek Tarih:', gonderilecekTarih);
+
+    if(props.vetId){
+      axios.post('https://localhost:7073/api/Veterinarian/AddAppointment', {
+      randevuTarih: gonderilecekTarih,
+      vetId: props.vetId,
+      petId: props.petId,
+    }).then(response => {
+        setTrigger(trigger + 1);
+        });
+    }
+    else if(props.shelterId){
+      axios.post('https://localhost:7073/api/Shelter/AddAppointment', {
+      randevuTarih: gonderilecekTarih,
+      vetId: props.vetId,
+      petId: props.petId,
+    }).then(response => {
+        setTrigger(trigger + 1);
+        });
+    }
+    
 
 
     setSeciliGun(gunIndex);

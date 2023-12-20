@@ -22,9 +22,14 @@ namespace pet_adoption_service.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Boolean>> AddAppointment(int vetId, int petId, DateTime date)
+        public async Task<ActionResult<Boolean>> AddAppointment(VetAddAppointmentDTO vetAddAppointmentDTO)
         {
-            return await _veterinarianService.AddAppointmentAsync(vetId, petId, date);
+            var vetId = vetAddAppointmentDTO.vetId;
+            var petId = vetAddAppointmentDTO.petId;
+            var randevuTarih = vetAddAppointmentDTO.randevuTarih;
+
+
+            return await _veterinarianService.AddAppointmentAsync(vetId, petId, randevuTarih);
         }
     }
 }

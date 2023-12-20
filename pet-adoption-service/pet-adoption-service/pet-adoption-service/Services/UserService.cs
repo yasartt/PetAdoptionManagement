@@ -77,6 +77,152 @@ namespace pet_adoption_service.Services
             return newShelter;
         }
 
+        public async Task<SessionView> LoginUserAsync(string userType, string userName, string password)
+        {
+            if(userType == "Adopter")
+            {
+                var usernameVarMi = await _dbContext.PetAdopters.SingleOrDefaultAsync(q => q.Username == userName);
 
+                if (usernameVarMi == null)
+                {
+                    return null;
+                }
+                else if (usernameVarMi.Password != password)
+                {
+                    //return passwordHatali 
+                }
+                else
+                {
+                    return new SessionView()
+                    {
+                        user = usernameVarMi
+                    };
+                }
+                return null;
+            }
+            else if(userType == "Shelter")
+            {
+                var usernameVarMi = await _dbContext.Shelters.SingleOrDefaultAsync(q => q.Username == userName);
+
+                if (usernameVarMi == null)
+                {
+                    return null;
+                }
+                else if (usernameVarMi.Password != password)
+                {
+                    //return passwordHatali 
+                }
+                else
+                {
+                    return new SessionView()
+                    {
+                        user = usernameVarMi
+                    };
+                }
+                return null;
+
+            }
+            else if (userType == "Veterinarian")
+            {
+                var usernameVarMi = await _dbContext.Veterinarians.SingleOrDefaultAsync(q => q.Username == userName);
+
+                if (usernameVarMi == null)
+                {
+                    return null;
+                }
+                else if (usernameVarMi.Password != password)
+                {
+                    //return passwordHatali 
+                }
+                else
+                {
+                    return new SessionView()
+                    {
+                        user = usernameVarMi
+                    };
+                }
+                return null;
+
+            }
+
+            return null;
+
+            // admin unuttuk
+        }
     }
 }
+
+/*
+ * public async Task<SessionView> LoginUserAsync(string userType, string userName, string password)
+        {
+            if (userType == "Adopter")
+            {
+                var usernameVarMi = await _dbContext.PetAdopters.SingleOrDefaultAsync(q => q.Username == userName);
+
+                if (usernameVarMi == null)
+                {
+                    return null;
+                }
+                else if (usernameVarMi.Password != password)
+                {
+                    //return passwordHatali 
+                }
+                else
+                {
+                    return new SessionView()
+                    {
+                        user = usernameVarMi
+                    };
+                }
+
+            return null;
+
+        }
+            else if (userType == "Shelter")
+            {
+                var usernameVarMi = await _dbContext.Shelters.SingleOrDefaultAsync(q => q.Username == userName);
+                if (usernameVarMi == null)
+                {
+                    return null;
+                }
+                else if (usernameVarMi.Password != password)
+                {
+                    //return passwordHatali 
+                }
+                else
+                {
+                    return new SessionView()
+                    {
+                        user = usernameVarMi
+                    }
+                }
+    }
+    return null;
+            }
+            else if(userType == "Veterinarian")
+            {
+                var usernameVarMi = await _dbContext.Veterinarians.SingleOrDefaultAsync(q => q.Username == userName);
+                if (usernameVarMi == null)
+                {
+                    return null;
+                }
+                else if (usernameVarMi.Password != password)
+                {
+                    //return passwordHatali 
+                }
+                else
+                {
+        return new SessionView()
+        {
+            user = usernameVarMi;
+    };
+}
+            }
+            else
+            {
+    // admini unuttuk
+    return null;
+
+}
+
+        }*/

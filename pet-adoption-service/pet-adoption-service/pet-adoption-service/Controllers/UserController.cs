@@ -81,5 +81,16 @@ namespace pet_adoption_service.Controllers
             return await _dbContext.Veterinarians.SingleOrDefaultAsync(q => q.UserId == 1);
         }
 
+
+        [HttpGet("{userType}/{username}/{password}")]
+        [ProducesResponseType(typeof(SessionView), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
+        public async Task<ActionResult<SessionView>> LoginUser(string userType, string userName, string password)
+        {
+            var loginResult = await _userService.LoginUserAsync(userType, userName, password);
+
+            return Ok(loginResult);
+        }
+
     }
 }
