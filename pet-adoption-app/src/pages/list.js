@@ -6,13 +6,25 @@ import axios from 'axios';
 
 
 function List() {
+  
+  const [animals, setAnimals] = useState([]);
+  const [minAge, setMinAge] = useState('');
+  const [maxAge, setMaxAge] = useState('');
+  const [sex, setSex] = useState('');
 
-    const [animals,setAnimals] = useState([])
-    const pets = [
-        { id: 1, name: 'Lion' },
-        { id: 2, name: 'Elephant' },
-        { id: 3, name: 'Giraffe' },
-      ];
+  const handleFilterSubmit = () => {
+    // Construct the query parameters based on the filter inputs
+    const params = new URLSearchParams({
+        minAge: minAge,
+        maxAge: maxAge,
+        sex: sex
+    }).toString();
+
+    axios.get(`https://localhost:7073/api/Pet/GetAllPets?${params}`).then(response => {
+        setAnimals(response.data);
+    });
+};
+
     
 
 
@@ -22,6 +34,8 @@ function List() {
     })
       }, []);
 
+  
+
 
 
   return (
@@ -29,7 +43,41 @@ function List() {
 
         <div className="flex justify-around mt-5 items-center space-x-5">
             <input className="border-2 border-bunny-400 rounded-lg p-1 bg-bunny-100" type="text" placeholder="Search..."/>
-            <p>Filters</p>
+            <div className="flex justify-around mt-5 items-center space-x-5">
+                {/* Filter Inputs */}
+                <label>Min Age: </label>
+                <input
+                    className="border-2 border-bunny-400 rounded-lg p-1 bg-bunny-100"
+                    type="number"
+                    placeholder="Min Age"
+                    value={minAge}
+                    onChange={e => setMinAge(e.target.value)}
+                />
+                <label>Max Age: </label>
+                <input
+                    className="border-2 border-bunny-400 rounded-lg p-1 bg-bunny-100"
+                    type="number"
+                    placeholder="Max Age"
+                    value={maxAge}
+                    onChange={e => setMaxAge(e.target.value)}
+                />
+                <label>Sex: </label>
+                <select
+                    className="border-2 border-bunny-400 rounded-lg p-1 bg-bunny-100"
+                    value={sex}
+                    onChange={e => setSex(e.target.value)}
+                >
+                    <option value="">Any Sex</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <button
+                    className="bg-bunny-400 p-2 rounded-lg text-white"
+                    onClick={handleFilterSubmit}
+                >
+                    Apply Filters
+                </button>
+            </div>
         </div>
 
         <ul>
@@ -41,8 +89,8 @@ function List() {
                 <p className="bg-bunny-400 rounded-lg p-1">Name: {animal.name}</p>
                 <p className="bg-bunny-400 rounded-lg p-1">Type {animal.petId}:</p>
                 <div className="flex flex-row space-x-2 justify-around">
-                    <p className="bg-bunny-400 rounded-lg p-1">Age:</p>
-                    <p className="bg-bunny-400 rounded-lg p-1">Sex:</p>
+                    <p className="bg-bunny-400 rounded-lg p-1">Age: {animal.age}</p>
+                    <p className="bg-bunny-400 rounded-lg p-1">Sex: {animal.gender}</p>
                 </div>                
 
             </div>
