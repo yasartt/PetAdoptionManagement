@@ -1,8 +1,12 @@
 import { useState,useEffect } from 'react';
 import logo from './../rabbit.png';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 function Register({accIndex}) {
+    const navigate = useNavigate();
+    const [formError, setFormError] = useState('');
 
     const [formData0, setFormData0] = useState({
         name: '',
@@ -19,18 +23,40 @@ function Register({accIndex}) {
             ...formData0,
             [e.target.name]: e.target.value
         });
+        if(e.target.name === "username"){
+            setuserNameError("");
+        }
     };
 
     const handleSubmit0 = (e) => {
         e.preventDefault();
         // Handle form submission, e.g., send data to a server or API
         console.log('Adopter:', formData0);
+        if (!formData0.name || !formData0.address || !formData0.age || !formData0.username || !formData0.password) {
+            setFormError("Fill in all inputs");
+            return;
+        }
 
-        axios.post('https://localhost:7073/api/User/RegisterAdopter', formData0).then(response => {
-
-        });
-
-
+        axios.post('https://localhost:7073/api/User/RegisterAdopter', formData0)
+    .then(response => {
+        // Ýstek baþarýlý olduðunda burasý çalýþýr
+        setuserNameError("");
+        navigate('/auth', { state: { message: "Successfully registered. Now login." } });
+        //alert("Baþarýlý");
+    })
+    .catch(error => {
+        // Ýstek baþarýsýz olduðunda burasý çalýþýr
+        if (error.response && error.response.status === 409) {
+            // 409 Conflict durumu için özel bir iþlem yapabilirsiniz
+            setuserNameError(error.response.data)
+            //alert(error.response.data);
+        } else {
+            setuserNameError(error.response.data)
+            // Diðer tüm hatalar için genel bir iþlem
+            //alert("Baþarýsýz: Bir hata oluþtu");
+        }
+    });
+    setFormError(""); // Clear any previous error message
     };
     const [formData1, setFormData1] = useState({
         name: '',
@@ -39,20 +65,47 @@ function Register({accIndex}) {
         password: ''
     });
 
+    const [usernameError,setuserNameError] = useState("");
+
     const handleChange1 = (e) => {
         setFormData1({
             ...formData1,
             [e.target.name]: e.target.value
         });
+        if (e.target.name === 'username') {
+            setuserNameError("");
+        }
     };
 
     const handleSubmit1 = (e) => {
         e.preventDefault();
         console.log('Shelter:', formData1);
+        if (!formData0.name || !formData0.address || !formData0.age || !formData0.username || !formData0.password) {
+            setFormError("Fill in all inputs");
+            return;
+        }
         // Add your form submission logic here
-        axios.post('https://localhost:7073/api/User/RegisterShelter', formData1).then(response => {
-
+        axios.post('https://localhost:7073/api/User/RegisterShelter', formData1)
+        .then(response => {
+            // Ýstek baþarýlý olduðunda burasý çalýþýr
+            setuserNameError("");
+            navigate('/auth', { state: { message: "Successfully registered. Now login." } });
+            //alert("Baþarýlý");
+        })
+        .catch(error => {
+            // Ýstek baþarýsýz olduðunda burasý çalýþýr
+            if (error.response && error.response.status === 409) {
+                // 409 Conflict durumu için özel bir iþlem yapabilirsiniz
+                setuserNameError(error.response.data)
+                //alert(error.response.data);
+            } else {
+                setuserNameError(error.response.data)
+                // Diðer tüm hatalar için genel bir iþlem
+                //alert("Baþarýsýz: Bir hata oluþtu");
+            }
         });
+        setFormError(""); // Clear any previous error message
+
 
     };
     const [formData2, setFormData2] = useState({
@@ -68,24 +121,47 @@ function Register({accIndex}) {
             ...formData2,
             [e.target.name]: e.target.value
         });
-
-
+        if (e.target.name === 'username') {
+            setuserNameError("");
+        }
     };
 
     const handleSubmit2 = (e) => {
         e.preventDefault();
         console.log('Form Data:', formData2);
+        if (!formData0.name || !formData0.address || !formData0.age || !formData0.username || !formData0.password) {
+            setFormError("Fill in all inputs");
+            return;
+        }
         // Add your form submission logic here
-        axios.post('https://localhost:7073/api/user/RegisterVet', formData2).then(response => {
-
-    });
+        axios.post('https://localhost:7073/api/user/RegisterVet', formData2)
+        .then(response => {
+            // Ýstek baþarýlý olduðunda burasý çalýþýr
+            setuserNameError("");
+            navigate('/auth', { state: { message: "Successfully registered. Now login." } });
+            //alert("Baþarýlý");
+        })
+        .catch(error => {
+            // Ýstek baþarýsýz olduðunda burasý çalýþýr
+            if (error.response && error.response.status === 409) {
+                // 409 Conflict durumu için özel bir iþlem yapabilirsiniz
+                setuserNameError(error.response.data)
+                //alert(error.response.data);
+            } else {
+                setuserNameError(error.response.data)
+                // Diðer tüm hatalar için genel bir iþlem
+                //alert("Baþarýsýz: Bir hata oluþtu");
+            }
+        });
+        setFormError(""); // Clear any previous error message
     };
 
   return (
     <div className="Auth">
         <div className="flex flex-col justify-center items-center space-y-4">
 
-
+            <div className="flex flex-col justify-center space-y-3" >
+            {usernameError && <div className="text-red-500 bg-red-100 border border-red-500 p-2 rounded">{usernameError}</div>}
 
             <div className="flex flex-col justify-center space-y-3">
                 {(accIndex == 0) && (
@@ -262,6 +338,7 @@ function Register({accIndex}) {
                 </form>
                 )}
             </div>
+            {formError && <div className="text-red-500">{formError}</div>}
         </div>
     </div>                    
     )

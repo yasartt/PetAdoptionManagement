@@ -1,9 +1,18 @@
 //import './App.css';
 import {Link } from "react-router-dom";
 import davsan from './../davsan.jpeg';
+import { useParams } from "react-router-dom";
+
+
+
 
 
 function DetailsV() {
+  const { id } = useParams();
+  //get vet Info by Id
+
+
+
   return (
     <div className="flex flex-col items-center">
 
@@ -12,7 +21,7 @@ function DetailsV() {
             <img src={davsan} alt="Davsan" className="w-1/2 rounded-lg "/>
 
             <div className="flex flex-col w-1/2 space-y-2">
-                <p className="bg-bunny-200 rounded-lg p-1">Name:</p>
+                <p className="bg-bunny-200 rounded-lg p-1">Name: {id}</p>
                 <p className="bg-bunny-200 rounded-lg p-1">Speciality:</p>
                 <p className="bg-bunny-200 rounded-lg p-1">Age:</p>
                 <p className="bg-bunny-200 rounded-lg p-1">Genda:</p>   
