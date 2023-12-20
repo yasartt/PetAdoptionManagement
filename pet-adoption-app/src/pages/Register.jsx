@@ -80,7 +80,7 @@ function Register({accIndex}) {
     const handleSubmit1 = (e) => {
         e.preventDefault();
         console.log('Shelter:', formData1);
-        if (!formData0.name || !formData0.address || !formData0.age || !formData0.username || !formData0.password) {
+        if (!formData1.name || !formData1.address ||  !formData1.username || !formData1.password) {
             setFormError("Fill in all inputs");
             return;
         }
@@ -129,7 +129,7 @@ function Register({accIndex}) {
     const handleSubmit2 = (e) => {
         e.preventDefault();
         console.log('Form Data:', formData2);
-        if (!formData0.name || !formData0.address || !formData0.age || !formData0.username || !formData0.password) {
+        if (!formData2.name || !formData2.location || !formData2.specialization|| !formData2.username || !formData2.password) {
             setFormError("Fill in all inputs");
             return;
         }

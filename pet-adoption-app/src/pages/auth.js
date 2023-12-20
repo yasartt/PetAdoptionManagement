@@ -47,12 +47,24 @@ function Auth() {
 
         //axios.post('https://localhost:7073/api/User/Loginuser', formValues).then(response => {});
 
-        localStorage.setItem('userType', formValues.userType);
-        localStorage.setItem('username', formValues.username);
+
         axios.get(`https://localhost:7073/api/User/Loginuser/${formValues.userType}/${formValues.username}/${formValues.password}`)
         .then(response => {
-            console.log('Login successful:', response.data);
-            navigate('/');
+            if(response.data.user === null || response.data.user === undefined){
+                setLoginError('Login failed');
+
+            }else{
+                localStorage.setItem('userId', response.data.user.userId);
+                localStorage.setItem('userType', formValues.userType);
+                localStorage.setItem('username', response.data.username);
+
+               console.log('Login successful:', response.data);
+            navigate('/'); 
+            }
+
+            
+
+
         })
         .catch(error => {
             setLoginError('Login failed'); // Set login error message
