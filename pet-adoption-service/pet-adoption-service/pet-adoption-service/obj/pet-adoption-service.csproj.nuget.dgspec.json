@@ -1,28 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\90536\\Desktop\\PetAdoptionManagement\\pet-adoption-service\\pet-adoption-service\\pet-adoption-service\\pet-adoption-service.csproj": {}
+    "/Users/sabrierendagdelen/Desktop/Bilkent/Fall 2023/CS353/PetAdoptionManagement/pet-adoption-service/pet-adoption-service/pet-adoption-service/pet-adoption-service.csproj": {}
   },
   "projects": {
-    "C:\\Users\\90536\\Desktop\\PetAdoptionManagement\\pet-adoption-service\\pet-adoption-service\\pet-adoption-service\\pet-adoption-service.csproj": {
+    "/Users/sabrierendagdelen/Desktop/Bilkent/Fall 2023/CS353/PetAdoptionManagement/pet-adoption-service/pet-adoption-service/pet-adoption-service/pet-adoption-service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\90536\\Desktop\\PetAdoptionManagement\\pet-adoption-service\\pet-adoption-service\\pet-adoption-service\\pet-adoption-service.csproj",
+        "projectUniqueName": "/Users/sabrierendagdelen/Desktop/Bilkent/Fall 2023/CS353/PetAdoptionManagement/pet-adoption-service/pet-adoption-service/pet-adoption-service/pet-adoption-service.csproj",
         "projectName": "pet-adoption-service",
-        "projectPath": "C:\\Users\\90536\\Desktop\\PetAdoptionManagement\\pet-adoption-service\\pet-adoption-service\\pet-adoption-service\\pet-adoption-service.csproj",
-        "packagesPath": "C:\\Users\\90536\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\90536\\Desktop\\PetAdoptionManagement\\pet-adoption-service\\pet-adoption-service\\pet-adoption-service\\obj\\",
+        "projectPath": "/Users/sabrierendagdelen/Desktop/Bilkent/Fall 2023/CS353/PetAdoptionManagement/pet-adoption-service/pet-adoption-service/pet-adoption-service/pet-adoption-service.csproj",
+        "packagesPath": "/Users/sabrierendagdelen/.nuget/packages/",
+        "outputPath": "/Users/sabrierendagdelen/Desktop/Bilkent/Fall 2023/CS353/PetAdoptionManagement/pet-adoption-service/pet-adoption-service/pet-adoption-service/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\90536\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/sabrierendagdelen/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
+          "/usr/local/share/dotnet/sdk/7.0.311/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -85,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.311/RuntimeIdentifierGraph.json"
         }
       }
     }
