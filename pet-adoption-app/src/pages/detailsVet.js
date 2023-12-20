@@ -3,15 +3,8 @@ import {Link } from "react-router-dom";
 import davsan from './../davsan.jpeg';
 import { useParams } from "react-router-dom";
 
-
-
-
-
 function DetailsV() {
   const { id } = useParams();
-  //get vet Info by Id
-
-
 
   return (
     <div className="flex flex-col items-center">

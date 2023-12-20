@@ -16,7 +16,7 @@ import './index.css';
 import AddPet from './pages/addPet';
 import ProfileVet from './pages/profileVet';
 import DetailsV from './pages/detailsVet';
-
+import ViewShelter from './pages/viewShelter';
 
 function App() {
   return (
@@ -38,6 +38,7 @@ function App() {
                   <Route path='/profileVet' element={<ProfileVet />} />
                   <Route path='/detailsVet/:id' element={<DetailsV />} />
                   <Route path="/details/:id" element={<Details/>}/>
+                  <Route path="/viewShelter/:id" element={<ViewShelter/>}/>
                 </Route>
             </Routes>
         </Router>

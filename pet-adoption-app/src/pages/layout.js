@@ -6,16 +6,8 @@ function Layout() {
 
     const [title, setTitle] = useState("");
     const currentLocation = useLocation();
-    const [isAuth,setAuth] = useState(false);
-
-    const userType = localStorage.getItem('userType');
-
-    const[isAdapterVisable] = useState(userType === "Adopter");
-    const[isShelterVisable] = useState(userType === "Shelter");
-    const[isVeterinarianVisable] = useState(userType === "Veterinarian");
-    const[isAdminVisable] = useState(userType === "Admin");
-    console.log(localStorage.getItem("userType"))
-
+    const [isAuth,setAuth] = useState(false)
+    
     
     useEffect(() => {
         if(currentLocation.pathname === "/auth") {
@@ -66,63 +58,39 @@ function Layout() {
       <div className="flex flex-row">
         {!isAuth && (
         <div className="h-screen bg-bunny-200 w-1/6 flex flex-col space-y-3">
-
             <div className="p-3 bg-bunny-400 text-white mt-12 mx-2 rounded-xl flex justify-center">
                 <Link to="/">Home</Link>
             </div>
-
             <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
                 <Link to="/auth">Auth</Link>
             </div>
-            {isAdapterVisable && ( 
-            <>            
-                {title === "List" && (<div className="p-3 bg-bunny-300 text-green-100 mx-2 rounded-xl flex justify-center">
-                    <Link to="/list">List</Link>
-                </div>)}
 
-                {title !== "List" &&(<div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
-                    <Link to="/list">List</Link>
-                </div>)}
+            {title === "List" && (<div className="p-3 bg-bunny-300 text-green-100 mx-2 rounded-xl flex justify-center">
+                <Link to="/list">List</Link>
+            </div>)}
+            {title !== "List" &&(<div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
+                <Link to="/list">List</Link>
+            </div>)}
 
-                {title === "Profile" && (<div className="p-3 bg-bunny-300 text-green-100 mx-2 rounded-xl flex justify-center">
-                    <Link to="/profile">Profile</Link>
-                </div>)}
-                {title !== "Profile" && (<div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
-                    <Link to="/profile">Profile</Link>
-                </div>)}     
-            </>
-            )}
-
-            {isAdminVisable && (
-            <>
-                <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
-                    <Link to="/adminMain">AdminM</Link>
-                </div>              
-            </>
-            )}
-
-            {isShelterVisable &&(
-                <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
-                    <Link to="/listShelter">List Shelter</Link>
-                </div>
-            )}
-
-            {isShelterVisable && (
-            <>{/*Bunları koydum çünkü buton tıklamaya*/}
+            {title === "Profile" && (<div className="p-3 bg-bunny-300 text-green-100 mx-2 rounded-xl flex justify-center">
+                <Link to="/profile">Profile</Link>
+            </div>)}
+            {title !== "Profile" && (<div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
+                <Link to="/profile">Profile</Link>
+            </div>)}
+            <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
+                <Link to="/adminMain">AdminM</Link>
+            </div>
+        
+            <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
+                <Link to="/listShelter">List Shelter</Link>
+            </div>
             <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
                 <Link to="/profileShelter">Profile Shelter</Link>
             </div>
-            </>
-            )}
-            {isVeterinarianVisable && (
             <div className="p-3 bg-bunny-400 text-green-100 mx-2 rounded-xl flex justify-center">
                 <Link to="/profileVet">Vet Profile</Link>
             </div>
-            )}
-       
-
-
-
         </div>
         )}
 

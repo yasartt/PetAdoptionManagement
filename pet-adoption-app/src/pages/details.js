@@ -12,6 +12,11 @@ import { useParams } from 'react-router-dom';
 function Details() {
 
   const { id } = useParams();
+  const records = [
+    { id: 1, name: 'AIDS' },
+    { id: 2, name: 'Bel Soguklugu' },
+    { id: 3, name: 'Miyala' },
+  ];
 
 
   return (
@@ -25,7 +30,11 @@ function Details() {
                 <p className="bg-bunny-400 rounded-lg p-1">Age:</p>
                 <p className="bg-bunny-400 rounded-lg p-1">Sex:</p>               
         </div>
-        <p className="bg-bunny-400 rounded-lg w-1/3 m-2 text-white p-1">Address:</p>
+        <div className="flex flex-col">
+          <p className="bg-bunny-400 rounded-lg m-2 text-white p-1">Shelter:</p>
+          <Link to={`/viewShelter/${id}`} className="bg-bunny-500 rounded-lg m-2 text-white p-1 text-center">View Shelter</Link>
+        </div>
+        
        </div>
 
         <p>More information about Pet</p>
@@ -41,10 +50,13 @@ function Details() {
               <Typography >Health Records</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                malesuada lacus ex, sit amet blandit leo lobortis eget.
-              </Typography>
+            <ul>
+            {records.map(animal => (
+              <li key={animal.id}>
+                <p>{animal.name}</p>
+              </li>
+            ))}
+            </ul>
             </AccordionDetails>
           </Accordion>
         </div>
